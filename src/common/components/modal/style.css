@@ -1,0 +1,27 @@
+@import "../../constants/contentProps.css";
+
+:root {
+  --aside-value: 40px;
+}
+
+.modal-window {
+  position: fixed;
+  top: var(--navigation-height);
+  bottom: var(--navigation-height);
+  left: var(--aside-value);
+  right: var(--aside-value);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  & .title {
+    text-align: center;
+  }
+
+  & .modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

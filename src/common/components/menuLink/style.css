@@ -1,0 +1,25 @@
+.menu-link {
+  display: block;
+  text-decoration: none;
+  padding: 4px 12px;
+  text-align: center;
+  color: white;
+  font-size: 0.6em;
+
+  & em {
+    font-size: 40px;
+  }
+
+  & label {
+    display: block;
+  }
+  &.active {
+    color: coral;
+    cursor: default;
+  }
+  &.disabled {
+    text-decoration: line-through;
+    cursor: not-allowed;
+    color: grey;
+  }
+}
