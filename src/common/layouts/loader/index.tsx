@@ -1,10 +1,8 @@
 import * as React from "react";
-import { withRouter } from "react-router";
-import { connect } from "react-redux";
 
 import "./style.css";
 
-class View extends React.Component {
+export default class LoaderLayout extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,9 +14,3 @@ class View extends React.Component {
         </section>);
     }
 }
-
-function mapStateToProps(state, props) {
-    return state;
-}
-
-export default withRouter(connect(mapStateToProps)(View))

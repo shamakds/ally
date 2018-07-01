@@ -28,6 +28,9 @@ module.exports = {
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
+        alias: {
+            sources: path.resolve('./src/sources.ts')
+        },
         modules: [
             path.resolve('./src'),
             path.resolve('./node_modules'),

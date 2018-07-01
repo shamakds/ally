@@ -6,21 +6,28 @@ import { createBrowserHistory } from 'history';
 
 import { configureStore } from './store';
 import App from './app/';
-import LoaderView from './common/views/loader';
-import LandingView from './common/views/main';
-import GameView from './common/views/game';
+import { LandingLayout } from 'sources';
 
 const history = createBrowserHistory();
+
+fetch('/user', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: "Evl" })
+}).then((res) => {debugger;});
+
+
 configureStore(undefined, history).then(store => {
     ReactDOM.render(
         <Provider store={store}>
             <Router history={history}>
                 <App>
                     <Switch>
-                        <Route exact path="/" component={LandingView}/>
-                        <Route exact path="/home/:view" component={LandingView}/>
-                        <Route path="/game/:id" component={GameView}/>
-                        <Route exact={false} component={LoaderView}/>
+                        <Route exact path="/:layout" component={LandingLayout}/>
+                        <Route exact={false} component={LandingLayout}/>
                     </Switch>
                 </App>
             </Router>

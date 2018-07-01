@@ -19,19 +19,25 @@ function reduceUrlWithParams(query, params = {}) {
     }).join("/");
 }
 
-export default ({ dispatch }) => next => action => {
+export default ({ dispatch }) => next => async action => {
     if(action.payload instanceof Promise) {
         dispatch({
             type: `${action.type}_${ACTION_PENDING}`
         });
+        dispatch({
+            type: ACTION_PENDING
+        });
 
-        action.payload
+        await action.payload
             .then(res => {
                 const result = res;
 
                 dispatch({
                     type: `${action.type}_${ACTION_SUCCESS}`,
                     payload: result
+                });
+                dispatch({
+                    type: ACTION_SUCCESS
                 });
 
                 if (action.redirect) {

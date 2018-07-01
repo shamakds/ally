@@ -1,4 +1,4 @@
-import { APP_DATA, GAME_CREATE } from "../../common/constants";
+import { APP_DATA, GAME_ACTIONS } from "../../common/constants";
 import AppService from "../../common/services";
 
 export const getAppData = () => ({
@@ -7,7 +7,7 @@ export const getAppData = () => ({
 });
 
 export const createGame = (props) => ({
-    type: GAME_CREATE,
+    type: GAME_ACTIONS.GAME_CREATE,
     redirect: "/game/:id",
     payload: AppService.createGame(props)
 });

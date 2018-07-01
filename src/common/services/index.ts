@@ -14,7 +14,7 @@ class Service {
             const data = this.store;
             setTimeout(() => {
                 res(data);
-            }, 3000);
+            }, 1000);
         });
     }
 

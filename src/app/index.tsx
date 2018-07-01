@@ -3,36 +3,28 @@ import {connect} from "react-redux";
 import { Link , withRouter } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import { getAppData } from "../store/actions";
-
-import LoaderView from "../common/views/loader";
+import { BaseComponent } from "sources";
 
 import './style.css';
 
-interface AppProps {}
-
-class App extends React.Component<any> {
+class App extends BaseComponent<any, any> {
+    props: any;
+    game: any;
     constructor(props) {
         super(props);
     }
 
-    async componentWillMount() {
-        await this.props.getAppData();
+    fetchData() {
+        this.props.getAppData();
     }
 
-    render() {
-        const { isPending = false } = this.props;
-
-        return (<main>
-            <section className="content">{
-                isPending ? <LoaderView />
-                : this.props.children
-            }</section>
-        </main>);
+    renderContent() {
+        return (<main>{this.props.children}</main>);
     }
 }
 
 function mapStateToProps(state, props) {
-    return {...state.app};
+    return { ...state.app };
 }
 
 const mapDispatchToProps = (dispatch) => {

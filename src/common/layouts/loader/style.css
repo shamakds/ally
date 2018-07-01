@@ -9,9 +9,9 @@
   justify-content: center;
   align-items: center;
 
-  font-size: 50px;
-  color: white;
-  text-shadow: 0 -2px 4px #711a00;
+  font-size: 30px;
+  color: black;
+  text-shadow: 0 -2px 4px white;
 
   & .fa-spin {
     animation: a 1.3s infinite linear;

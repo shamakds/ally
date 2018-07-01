@@ -1,0 +1,5 @@
+@import "../../constants/contentProps.css";
+
+.content.landing {
+  padding-bottom: var(--navigation-height);
+}

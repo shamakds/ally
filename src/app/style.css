@@ -4,13 +4,23 @@ html, body {
     margin: 0;
     padding: 0;
     font-size: 22px;
+    background-color: white;
 }
 
 main {
-    position: relative;
-    padding: var(--navigation-height) 20px var(--navigation-height);
-    min-height: 100vh;
+    position: fixed;
+    top: 50%; left: 50%;
+    margin: -300px -400px;
+    padding: 0;
+    width: 800px;
+    height: 600px;
     box-sizing: border-box;
-    background: #e4e4e4 url("../assets/images/bg.png") no-repeat center;
-    background-size: cover;
+    background: #cacaca;
+    color: black;
+
+    & .content {
+        position: relative;
+        height: 100%;
+        box-sizing: border-box;
+    }
 }
