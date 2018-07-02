@@ -1,8 +1,9 @@
-import {APP_PENDING, APP_READY, ACTION_PENDING, ACTION_FAILURE, ACTION_SUCCESS} from "../../common/constants";
+import {APP_ACTIONS, ACTION_PENDING, ACTION_FAILURE, ACTION_SUCCESS} from "../../common/constants";
 const actionTypeReg = new RegExp("^[a-z_]+[a-z]+_([a-z]+$)", "i");
 
 export default ({ getState, dispatch }) => next => action => {
-    if (action.type === APP_PENDING || action.type === APP_READY) {
+    const APP_PENDING = `${APP_ACTIONS.DEFAULT}_${ACTION_PENDING}`;
+    if (action.type === APP_PENDING || action.type === APP_ACTIONS.READY) {
         return next(action);
     }
 
@@ -19,7 +20,7 @@ export default ({ getState, dispatch }) => next => action => {
         case (ACTION_SUCCESS || ACTION_FAILURE): {
             if (app.isPending) {
                 dispatch({
-                    type: APP_READY
+                    type: APP_ACTIONS.READY
                 });
             }
             break;

@@ -9,7 +9,7 @@
     "game": "node server.js",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "build-watch": "webpack --watch --hot --mode production",
+    "build-watch": "webpack --watch --hot --devtool cheap-module-source-map --progress --colors",
     "start": "webpack-dev-server --debug --devtool cheap-module-source-map --output-pathinfo --history-api-fallback --hot --inline --progress --colors --port 3004 --reset"
   },
   "author": "",

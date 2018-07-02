@@ -27,7 +27,7 @@ function sendErrorMessage(res, message) {
     res.status(400).end(JSON.stringify({ errorMessage: message }))
 }
 
-app.get('/user/:id', (req, res) => {
+app.get('/users/:id', (req, res) => {
     if(!fs.existsSync(dbPath) || !fs.existsSync(filePath)) {
         return sendErrorMessage(res, 'User was NOT found');
     }
@@ -40,25 +40,25 @@ app.get('/user/:id', (req, res) => {
 
     res.status(200).end(JSON.stringify(users[userID]));
 });
-app.post('/user', (req, res) => {
+app.post('/users', (req, res) => {
     if(!fs.existsSync(dbPath)) {
         fs.mkdirSync(dbPath);
     }
     if(!fs.existsSync(filePath)) {
         fs.appendFileSync(filePath, '{}');
     }
-    console.log(req.body);
+
     const users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     const user = new User(Object.assign({ createOn: Date.now() }, req.body));
-    users[user.name] = user;
+    users[user.id] = user;
     fs.writeFileSync(filePath, JSON.stringify(users));
     res.status(200).end(JSON.stringify(user));
 });
 
 app.get('*', function(req, res) {
     let url = resolvePath(__dirname, req.url);
-    if (fs.lstatSync(url).isDirectory()) {
-        url = resolvePath(path.join(__dirname, req.url), 'index.html');
+    if (!fs.existsSync(url) || fs.lstatSync(url).isDirectory()) {
+        url = resolvePath(__dirname, 'index.html');
     }
 
     res.set(200).set({ 'Content-Type': mimeTypes.contentType(url) }).end(fs.readFileSync(url));

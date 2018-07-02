@@ -56,13 +56,6 @@ module.exports = {
                     options: { ident: 'postcss' }
                 }
                 ]
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
             }
         ]
     },
@@ -70,6 +63,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             favicon: './assets/images/favicon.jpg',
             inject: true,
+            sourceMap: true,
             template: "./index.html",
             filename: "./index.html"
         }),

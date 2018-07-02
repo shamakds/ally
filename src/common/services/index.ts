@@ -1,3 +1,5 @@
+import api from './api';
+
 class Service {
     constructor() {}
 
@@ -9,13 +11,13 @@ class Service {
 
         window.localStorage.setItem("app", JSON.stringify(store));
     }
-    getUserData() {
-        return new Promise((res, rej) => {
-            const data = this.store;
-            setTimeout(() => {
-                res(data);
-            }, 1000);
-        });
+
+    /* USER */
+    getUser(id) {
+        return api.get(`/users/${id}`);
+    }
+    addUser(user) {
+        return api.post(`/users`, user);
     }
 
     createGame(data) {

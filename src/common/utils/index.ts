@@ -1,3 +1,5 @@
-import gameClient from './gameClient';
+import GameClient from './gameClient';
+import getAuth from './auth';
+import createUserManager from './user';
 
-export { gameClient };
+export { GameClient, getAuth, createUserManager };

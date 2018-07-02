@@ -6,19 +6,30 @@ import { createBrowserHistory } from 'history';
 
 import { configureStore } from './store';
 import App from './app/';
-import { LandingLayout } from 'sources';
+import { LandingLayout,  getAuth } from 'sources';
+
+class LogIn extends React.Component<any> {
+    render() {
+        return <LandingLayout />;
+    }
+}
 
 const history = createBrowserHistory();
 
-fetch('/user', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name: "Evl" })
-}).then((res) => {debugger;});
+const handleAuthentication = (nextState) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+        getAuth().handleAuthentication();
+    }
+};
 
+// fetch('/user', {
+//     method: 'POST',
+//     headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ name: "Evl" })
+// });
 
 configureStore(undefined, history).then(store => {
     ReactDOM.render(
@@ -26,7 +37,11 @@ configureStore(undefined, history).then(store => {
             <Router history={history}>
                 <App>
                     <Switch>
-                        <Route exact path="/:layout" component={LandingLayout}/>
+                        <Route exact path="/login" render={(props) => {
+                            handleAuthentication(props);
+                            return (<LogIn history={history} />);
+                        }}/>
+                        <Route exact path="/" component={LandingLayout}/>
                         <Route exact={false} component={LandingLayout}/>
                     </Switch>
                 </App>

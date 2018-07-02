@@ -6,6 +6,6 @@ module.exports = class User {
             this[key] = props[key];
         });
 
-        this.id = Date.now();
+        this.id = props.email || props.nickname;
     }
 };
